@@ -1,21 +1,28 @@
-<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
-<!-- Or if you want the latest version from the main branch -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
-<video id="video"></video>
-<script>
-  var video = document.getElementById('video');
-  var videoSrc = 'https://local.vmarkii.com:7900/hls/MAIN.m3u8';
-  //
-  // First check for native browser HLS support
-  //
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = videoSrc;
-    //
-    // If no native HLS support, check if HLS.js is supported
-    //
-  } else if (Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource(videoSrc);
-    hls.attachMedia(video);
-  }
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VMarkII's Live Stream</title>
+  </head>
+  <body>
+    <video id="video"></video>
+    <script>
+      var video = document.getElementById('video');
+      var videoSrc = 'https://local.vmarkii.com:7900/live/MAIN/index.m3u8';
+      //
+      // First check for native browser HLS support
+      //
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        //
+        // If no native HLS support, check if HLS.js is supported
+        //
+      } else if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+      }
+    </script>
+    <script src="../dist/hls.js"></script>
+  </body>
+</html>
