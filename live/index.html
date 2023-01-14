@@ -1,29 +1,21 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>www.vmarkii.com Live</title>
-    <link rel="stylesheet" type="text/css" href="demo.css" />
-</head>
-
-<body> 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
-    <!-- Or if you want the latest version from the main branch -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
-    <video id="video"></video>
-    <script>
-      var video = document.getElementById('video');
-      var videoSrc = 'https://local.vmarkii.com:7900/hls/main.m3u8';
-      if (Hls.isSupported()) {
-        var hls = new Hls();
-        hls.loadSource(videoSrc);
-        hls.attachMedia(video);
-      }
-      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = videoSrc;
-      }
-    </script>
-</body>
-
-</html>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<!-- Or if you want the latest version from the main branch -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+<video id="video"></video>
+<script>
+  var video = document.getElementById('video');
+  var videoSrc = 'https://local.vmarkii.com:7900/live/MAIN/index.m3u8';
+  //
+  // First check for native browser HLS support
+  //
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoSrc;
+    //
+    // If no native HLS support, check if HLS.js is supported
+    //
+  } else if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(videoSrc);
+    hls.attachMedia(video);
+  }
+</script>
