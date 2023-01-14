@@ -3,9 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <title>VMarkII's Live Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .hlsjs {
+          position: relative;
+          width: 100%;
+      }
+      .ratio {
+          position: absolute;
+          padding-top: 75%;
+      }
+      video {
+          background-color: #ccc;
+          width: 100%;
+      }
+  </style>
   </head>
   <body>
-    <video id="video"></video>
+    <div class="hlsjs">
+      <video id="video" controls></video>
+      <div class="ratio"></div>
+    </div>    
     <script src="../dist/hls.js"></script>
     <script>
       var video = document.getElementById('video');
